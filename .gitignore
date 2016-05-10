@@ -1,0 +1,6 @@
+# Mac OS X files to be ignored.
+*.DS_Store
+
+# Git backup files
+*.merge_file_*
+*.orig
