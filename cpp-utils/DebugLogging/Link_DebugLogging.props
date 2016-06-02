@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectDeps_UseLinkGuard_DebugLogging>Link</ProjectDeps_UseLinkGuard_DebugLogging>
+  </PropertyGroup>
+  <!--
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SourceRoot)thirdparty\cpp-utils\Link_DebugLogging.props" Condition="'$(ProjectDeps_UseLinkGuard_DebugLogging)' == ''" />
+  </ImportGroup>
+  -->
+  <ItemGroup Condition="(('$(ConfigurationType)' == 'Application') Or ('$(ConfigurationType)' == 'DynamicLibrary')) And ('$(ProjectGUID)' != '{EA652EB0-E417-47B5-9A76-5C12477E94CC}')">
+    <ProjectReference Include="$([MSBuild]::MakeRelative('$(ProjectDir)', '$(MSBuildThisFileDirectory)DebugLogging.vcxproj'))">
+      <Project>{ad31a5b8-3c49-49f6-b325-c82e7e6011a0}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="(('$(ConfigurationType)' == 'Application') Or ('$(ConfigurationType)' == 'DynamicLibrary')) And ('$(ProjectGUID)' != '{EA652EB0-E417-47B5-9A76-5C12477E94CC}')">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>

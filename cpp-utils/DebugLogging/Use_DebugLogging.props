@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SourceRoot)cpp-utils\DebugLogging\Link_DebugLogging.props" Condition="'$(ProjectDeps_UseLinkGuard_DebugLogging)' == ''" />
+  </ImportGroup>
+  <PropertyGroup>
+    <ProjectDeps_UseLinkGuard_DebugLogging>Use</ProjectDeps_UseLinkGuard_DebugLogging>
+    <ProjectDeps_UseLinkMode_DebugLogging Condition="'$(ProjectGUID)' == '{EA652EB0-E417-47B5-9A76-5C12477E94CC}'">Use</ProjectDeps_UseLinkMode_DebugLogging>
+    <ProjectDeps_UseLinkMode_DebugLogging Condition="'$(ProjectGUID)' != '{EA652EB0-E417-47B5-9A76-5C12477E94CC}'">Link</ProjectDeps_UseLinkMode_DebugLogging>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+  </ImportGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+</Project>
