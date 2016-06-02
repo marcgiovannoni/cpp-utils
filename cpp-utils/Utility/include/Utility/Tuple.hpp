@@ -34,6 +34,20 @@ namespace Utility
             lambda(std::get<_Size>(args));
             for_each<_Lambda, _Size + 1>(args, lambda);
         }
+
+        template<typename _Lambda, std::size_t _Size = 0, typename... _Args>
+        inline typename std::enable_if<_Size == sizeof...(_Args), void>::type
+            const_for_each(const std::tuple<_Args...>& /*args*/, _Lambda /*lambda*/)
+        {
+        }
+
+        template<typename _Lambda, std::size_t _Size = 0, typename... _Args>
+        inline typename std::enable_if < _Size < sizeof...(_Args), void>::type
+            const_for_each(const std::tuple<_Args...>& args, _Lambda lambda)
+        {
+            lambda(std::get<_Size>(args));
+            const_for_each<_Lambda, _Size + 1>(args, lambda);
+        }
     }
 }
 
