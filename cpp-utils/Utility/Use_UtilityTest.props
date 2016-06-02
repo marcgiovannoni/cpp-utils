@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SourceRoot)cpp-utils\Utility\Link_UtilityTest.props" Condition="'$(ProjectDeps_UseLinkGuard_UtilityTest)' == ''" />
+  </ImportGroup>
+  <PropertyGroup>
+    <ProjectDeps_UseLinkGuard_UtilityTest>Use</ProjectDeps_UseLinkGuard_UtilityTest>
+    <ProjectDeps_UseLinkMode_UtilityTest Condition="'$(ProjectGUID)' == '{4867F670-A654-489A-BFE6-9EEA32FC57D3}'">Use</ProjectDeps_UseLinkMode_UtilityTest>
+    <ProjectDeps_UseLinkMode_UtilityTest Condition="'$(ProjectGUID)' != '{4867F670-A654-489A-BFE6-9EEA32FC57D3}'">Link</ProjectDeps_UseLinkMode_UtilityTest>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SourceRoot)cpp-utils\Utility\$(ProjectDeps_UseLinkMode_UtilityTest)_Utility.props" Condition="('$(ProjectDeps_UseLinkGuard_Utility)' == '') Or (('$(ProjectDeps_UseLinkGuard_Utility)' == 'Link') And ('$(ProjectDeps_UseLinkMode_UtilityTest)' == 'Use'))" />
+    <Import Project="$(SourceRoot)thirdparty\googletest\$(ProjectDeps_UseLinkMode_UtilityTest)_GoogleTest.props" Condition="('$(ProjectDeps_UseLinkGuard_GoogleTest)' == '') Or (('$(ProjectDeps_UseLinkGuard_GoogleTest)' == 'Link') And ('$(ProjectDeps_UseLinkMode_UtilityTest)' == 'Use'))" />
+  </ImportGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+</Project>

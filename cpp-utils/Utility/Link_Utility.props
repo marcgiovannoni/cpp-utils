@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectDeps_UseLinkGuard_Utility>Link</ProjectDeps_UseLinkGuard_Utility>
+  </PropertyGroup>
+  <!--
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SourceRoot)thirdparty\cpp-utils\Link_Utility.props" Condition="'$(ProjectDeps_UseLinkGuard_Utility)' == ''" />
+  </ImportGroup>
+  -->
+  <ItemGroup Condition="(('$(ConfigurationType)' == 'Application') Or ('$(ConfigurationType)' == 'DynamicLibrary')) And ('$(ProjectGUID)' != '{4F81E621-AB1B-44D0-916A-13EE04BB7C7C}')">
+    <ProjectReference Include="$([MSBuild]::MakeRelative('$(ProjectDir)', '$(MSBuildThisFileDirectory)Utility.vcxproj'))">
+      <Project>{ad31a5b8-3c49-49f6-b325-c82e7e6011a0}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="(('$(ConfigurationType)' == 'Application') Or ('$(ConfigurationType)' == 'DynamicLibrary')) And ('$(ProjectGUID)' != '{4F81E621-AB1B-44D0-916A-13EE04BB7C7C}')">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>
